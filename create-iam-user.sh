@@ -14,7 +14,6 @@ if [[ ! -f $CSV_FILE ]]; then
   exit;
 fi
 
-count=0
 group=""
 
 while IFS=, read key value
@@ -32,8 +31,4 @@ do
     echo "add user to group."
     aws iam add-user-to-group --user-name $value --group-name $group
   fi
-
-  # increment
-  count=`expr $count + 1`
-
 done < $CSV_FILE
